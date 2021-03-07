@@ -26,7 +26,7 @@ export class User implements ValueObject {
     }
 
     whoAmI(): String {
-        return this.command;
+        return this.name + " " + this.surname;
     }
 }
 
