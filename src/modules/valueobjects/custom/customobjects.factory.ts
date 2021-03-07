@@ -2,7 +2,7 @@ import { ValueObject } from '../valueobject.interface';
 import { UserFactory } from './user.valueobject'
 
 
-export class ValueObjectsFactory {
+export class CustomObjectsFactory {
     private name: string;
     private body: any;
     private valueObjects : { [key: string]: ValueObject } = {
