@@ -4,8 +4,8 @@ const fastify = require('fastify')({
 })
 
 // Declare a route
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' })
+fastify.get('/', async (request, reply) => {
+  return { hello: 'world' }
 })
 
 // Run the server!
