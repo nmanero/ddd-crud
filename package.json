@@ -1,0 +1,23 @@
+{
+  "name": "ddd-crud",
+  "version": "1.0.0",
+  "description": "Example of DDD over a CRUD project. Value objects and DTOs can be customized",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmanero/ddd-crud.git"
+  },
+  "keywords": [
+    "crud",
+    "ddd"
+  ],
+  "author": "Nicolás Manero",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nmanero/ddd-crud/issues"
+  },
+  "homepage": "https://github.com/nmanero/ddd-crud#readme"
+}
