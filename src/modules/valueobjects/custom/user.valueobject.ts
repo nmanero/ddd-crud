@@ -12,6 +12,8 @@ export class User implements ValueObject {
     }
 
     validate(): void {
+        if (this.surname == null || this.surname == '')
+            throw "User invalid: surname is required";
         console.log('Valid User');
     }
 
