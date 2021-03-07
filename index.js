@@ -3,9 +3,9 @@ const fastify = require('fastify')({
   logger: true
 })
 
-// Declare a route
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
+const routes = require("./src/modules/controllers/get.crud");
+routes.forEach((route, index) => {
+  fastify.route(route)
 })
 
 // Run the server!
