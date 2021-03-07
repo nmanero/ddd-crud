@@ -13,4 +13,12 @@ export class ValueObjectsFactory {
       this.name = commandName;
       this.body = body;
     }
+  
+    getCustomObject() {
+        if (this.valueObjects.hasOwnProperty(this.name)) {
+            const factory = this.valueObjects[this.name];
+            return factory.create(this.body);
+        } else
+            throw "Value Object not found " + this.name;
+    }
 }
