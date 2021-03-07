@@ -1,13 +1,16 @@
 import { ValueObject } from '../valueobject.interface';
-import { User } from './user.valueobject'
+import { UserFactory } from './user.valueobject'
 
-const valueObjects : { [key: string]: ValueObject } = {
-    "user": User
-};
 
-export function ValueObjectByName(name: String) {
-    if (valueObjects.hasOwnProperty(name))
-        return valueObjects[name];
-    else
-        throw "Value Object not found " + name;
+export class ValueObjectsFactory {
+    private name: string;
+    private body: any;
+    private valueObjects : { [key: string]: ValueObject } = {
+        "user": new UserFactory()
+    }
+  
+    constructor(commandName: string, body: any) {
+      this.name = commandName;
+      this.body = body;
+    }
 }
