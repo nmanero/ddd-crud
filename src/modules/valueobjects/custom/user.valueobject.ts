@@ -1,7 +1,7 @@
 import { ValueObject } from "../valueobject.interface";
 import { Domain } from "../../domains/domain.interface";
 
-class User implements ValueObject {
+export class User implements ValueObject {
     name: String;
     constructor(name: String) {
         this.name = name;
