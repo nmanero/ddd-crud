@@ -14,7 +14,7 @@ export class CustomObjectsFactory {
       this.body = body;
     }
   
-    getCustomObject() {
+    instantiate() {
         if (this.valueObjects.hasOwnProperty(this.name)) {
             const factory = this.valueObjects[this.name];
             return factory.create(this.body);
