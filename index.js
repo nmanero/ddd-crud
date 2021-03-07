@@ -8,6 +8,11 @@ routes.forEach((route, index) => {
   fastify.route(route)
 })
 
+const routesPost = require("./src/modules/controllers/post.crud");
+routesPost.forEach((route, index) => {
+  fastify.route(route)
+})
+
 // Run the server!
 fastify.listen(3000, function (err, address) {
   if (err) {
