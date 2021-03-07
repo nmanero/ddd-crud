@@ -1,7 +1,7 @@
 import { ValueObject } from "../valueobject.interface";
 import { Domain } from "../../domains/domain.interface";
 
-export class User implements ValueObject {
+class User implements ValueObject {
     private command = 'user';
     private name: String;
     private surname: String;
