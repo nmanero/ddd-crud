@@ -1,5 +1,6 @@
 const postCommand = async (request: Request, reply: Response) => {
-    return { hello: 'world POST' }
+    const entity = request.params.entity;
+    return { hello: 'world POST ' + entity }
 };
 
 module.exports = postCommand;

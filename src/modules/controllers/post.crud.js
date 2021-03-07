@@ -2,7 +2,7 @@ const postCommand = require('../commands/post.command')
 // Declare a route
 const routes = [{
     method: 'POST',
-    url: '/',
+    url: '/post/:entity',
     handler: postCommand
 }];
 
