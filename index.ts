@@ -1,15 +1,15 @@
+import { routes as GetRoutes } from './src/modules/controllers/get.crud'
+import { routes as PostRoutes } from './src/modules/controllers/post.crud'
 // Require the framework and instantiate it
 const fastify = require('fastify')({
   logger: true
 })
 
-const routes = require("./src/modules/controllers/get.crud");
-routes.forEach((route, index) => {
+GetRoutes.forEach((route, index) => {
   fastify.route(route)
 })
 
-const routesPost = require("./src/modules/controllers/post.crud");
-routesPost.forEach((route, index) => {
+PostRoutes.forEach((route, index) => {
   fastify.route(route)
 })
 
@@ -19,5 +19,4 @@ fastify.listen(3000, function (err, address) {
     fastify.log.error(err)
     process.exit(1)
   }
-  fastify.log.info(`server listening on ${address}`)
 })
