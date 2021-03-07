@@ -24,3 +24,9 @@ export class User implements ValueObject {
         return this.command;
     }
 }
+
+export class UserFactory {
+    create(body: any) {
+        return new User(body);
+    }
+}
