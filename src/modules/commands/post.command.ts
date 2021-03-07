@@ -5,7 +5,10 @@ const postCommand = async (request: Request, reply: Response) => {
     const valueObjectsFactory = new CustomObjectsFactory(request.params.entity, request.query);
     const entity : ValueObject = valueObjectsFactory.instantiate();
     entity.validate();
-    return { hello: 'world POST ' + entity.whoAmI() }
+    return {
+        success: true,
+        entity: entity.whoAmI()
+    };
 };
 
 module.exports = postCommand;
