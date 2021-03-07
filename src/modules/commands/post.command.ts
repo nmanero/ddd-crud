@@ -2,7 +2,7 @@ import { ValueObject } from '../valueobjects/valueobject.interface';
 import { CustomObjectsFactory } from '../valueobjects/custom/customobjects.factory';
 import { postService } from '../services/services.crud'
 
-const postCommand = async (request: Request, reply: Response) => {
+export const postCommand = async (request, reply) => {
     const valueObjectsFactory = new CustomObjectsFactory(request.params.entity, request.query);
     const entity : ValueObject = valueObjectsFactory.instantiate();
     entity.validate();
@@ -13,5 +13,3 @@ const postCommand = async (request: Request, reply: Response) => {
         entity: entity.whoAmI()
     };
 };
-
-module.exports = postCommand;
