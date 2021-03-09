@@ -15,5 +15,5 @@ make docker-run
 And to test the resources:
 
 ```shell
-curl -X POST "http://localhost:3000/user?surname=Palotes&name=Perico"
+curl -X POST "http://localhost:3000/users?surname=Palotes&name=Perico"
 ```

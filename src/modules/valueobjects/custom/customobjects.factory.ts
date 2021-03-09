@@ -6,7 +6,7 @@ export class CustomObjectsFactory {
     private name: string;
     private body: any;
     private valueObjects : { [key: string]: any } = {
-        "user": new UserFactory()
+        "users": new UserFactory()
         //Add new custom value objects here, pointing to their factory
     }
   
