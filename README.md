@@ -9,7 +9,7 @@ To execute it, after cloning the repository and having docker installed:
 
 ```shell
 make docker
-make docker-run
+make run-docker
 ```
 
 And to test the resources:
