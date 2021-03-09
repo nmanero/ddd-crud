@@ -8,8 +8,8 @@ Then, when in need of creating a new CRUD project, core structure can be reused 
 To execute it, after cloning the repository and having docker installed:
 
 ```shell
-docker build -t <MY_USER>/ddd-crud .
-docker run -p 3000:3000 <MY_USER>/ddd-crud
+make docker
+make docker-run
 ```
 
 And to test the resources:
