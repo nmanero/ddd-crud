@@ -1,7 +1,7 @@
-import { postCommand } from '../commands/post.command'
+import { createCommand } from '../commands/create.command'
 // Declare a route
 export const routes = [{
     method: 'POST',
-    url: '/post/:entity',
-    handler: postCommand
+    url: '/:entity',
+    handler: createCommand
 }];

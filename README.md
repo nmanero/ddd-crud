@@ -9,11 +9,11 @@ To execute it, after cloning the repository and having docker installed:
 
 ```shell
 make docker
-make docker-run
+make run-docker
 ```
 
 And to test the resources:
 
 ```shell
-curl -X POST "http://localhost:3000/post/user?surname=Palotes&name=Perico"
+curl -X POST "http://localhost:3000/users?surname=Palotes&name=Perico"
 ```

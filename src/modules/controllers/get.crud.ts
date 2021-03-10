@@ -1,7 +1,7 @@
-import { getCommand } from '../commands/get.command'
+import { readCommand } from '../commands/read.command'
 // Declare a route
 export const routes = [{
     method: 'GET',
     url: '/',
-    handler: getCommand
+    handler: readCommand
 }];
