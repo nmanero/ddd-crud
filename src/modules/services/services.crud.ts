@@ -1,4 +1,4 @@
-import { Domain } from "../domains/domain.interface";
+import {Domain} from "../domain/domain";
 
 export const createService = async (domain: Domain) => {
     const fakeRepository = {
