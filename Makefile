@@ -1,10 +1,30 @@
 .PHONY: help
 help:
 	@echo "make help              Show this help message"
+	@echo "make init			  Initialize repository."
+	@echo "						  This command install git hooks locally."
+	@echo "make dev				  Run the app's development environment"
 	@echo "make docker            Make the app's Docker image"
 	@echo "make run-docker        Run the app's Docker image locally. "
 	@echo "                       This command exists for conveniently testing "
 	@echo "                       the Docker image locally. "
+
+.PHONY: init
+init: githooks
+
+githooks:
+	@rm -rf .git/hooks
+	@ln -s ../docs/hooks .git/hooks
+	@chmod -R +x .git/hooks/*
+
+.PHONY: dev
+dev: build
+	@npm run dev
+
+build: node_modules
+	@npm install
+
+node_modules: package.json
 
 .PHONY: docker
 docker:
