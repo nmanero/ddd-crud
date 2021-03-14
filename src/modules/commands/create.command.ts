@@ -5,7 +5,6 @@ import {DTO} from "../DTO/dto";
 export const createCommand = async (request, reply) => {
     const valueObjectsFactory = new DomainFactory(request.params.entity, request.query);
     const entity : DTO = valueObjectsFactory.instantiate();
-    entity.validate();
     createService(entity.toDomain());
 
     return {
