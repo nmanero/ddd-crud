@@ -17,3 +17,8 @@ And to test the resources:
 ```shell
 curl -X POST "http://localhost:3000/users?surname=Palotes&name=Perico"
 ```
+## Contributing
+
+Please have a look at our
+[Contributing Guidelines](https://github.com/nmanero/ddd-crud/blob/master/docs/CONTRIBUTING.md) 
+for instructions on setting up a development environment and contributing.
