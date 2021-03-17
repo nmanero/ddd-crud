@@ -1,11 +1,19 @@
 import {Hashmap} from "../DTO/hashmap";
+import {Repository} from "../infraestructure/repositories/repository.interface";
+import {Domain} from "../domains/domain";
 
-export const createService = async (hashmap: Hashmap) => {
-    const fakeRepository = {
-        "persist": function(hashmap: Hashmap) {
-            console.log("Persisting domain object", hashmap);
-        }
-    };
+export class Service {
+    private repository: Repository;
 
-    fakeRepository.persist(hashmap);
-};
+    constructor(repository: Repository) {
+        this.repository = repository;
+    }
+
+    get() {
+        return this.repository.findAll();
+    }
+
+    create(d: Domain) {
+        this.repository.save(d);
+    }
+}
