@@ -1,11 +1,11 @@
-import { ValueObject } from '../valueobjects/valueobject.interface';
-import { CustomObjectsFactory } from '../valueobjects/custom/customobjects.factory';
 import { createService } from '../services/services.crud'
+import {CustomDomainFactory} from "../domains/custom/custom.domain.factory";
+import {Domain} from "../domains/domain";
 
 export const createCommand = async (request, reply) => {
-    const valueObjectsFactory = new CustomObjectsFactory(request.params.entity, request.query);
-    const entity : ValueObject = valueObjectsFactory.instantiate();
-    entity.validate();
+    console.log(request.params.entity, request.query);
+    const domainObjectsFactory = new CustomDomainFactory(request.params.entity, request.query);
+    const entity : Domain = domainObjectsFactory.instantiate();
     createService(entity.toDTO());
 
     return {

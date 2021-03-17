@@ -1,11 +1,11 @@
-import { Domain } from "../domains/domain.interface";
+import {Hashmap} from "../DTO/hashmap";
 
-export const createService = async (domain: Domain) => {
+export const createService = async (hashmap: Hashmap) => {
     const fakeRepository = {
-        "persist": function(d: Domain) {
-            console.log("Persisting domain object");
+        "persist": function(hashmap: Hashmap) {
+            console.log("Persisting domain object", hashmap);
         }
     };
 
-    fakeRepository.persist(domain);
+    fakeRepository.persist(hashmap);
 };

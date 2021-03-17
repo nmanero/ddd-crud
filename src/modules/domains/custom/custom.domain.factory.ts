@@ -1,20 +1,18 @@
-import { ValueObject } from '../valueobject.interface';
-import { UserFactory } from './user.valueobject'
+import {UserFactory} from "./user/user.factory";
 
-
-export class CustomObjectsFactory {
+export class CustomDomainFactory {
     private name: string;
     private body: any;
     private valueObjects : { [key: string]: any } = {
         "users": new UserFactory()
         //Add new custom value objects here, pointing to their factory
     }
-  
+
     constructor(commandName: string, body: any) {
-      this.name = commandName;
-      this.body = body;
+        this.name = commandName;
+        this.body = body;
     }
-  
+
     instantiate() {
         if (this.valueObjects.hasOwnProperty(this.name)) {
             const factory = this.valueObjects[this.name];
