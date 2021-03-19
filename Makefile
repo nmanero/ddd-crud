@@ -1,13 +1,11 @@
 .PHONY: help
 help:
-	@echo "make help              Show this help message"
-	@echo "make init			  Initialize repository."
-	@echo "						  This command install git hooks locally."
-	@echo "make dev				  Run the app's development environment"
-	@echo "make docker            Make the app's Docker image"
-	@echo "make run-docker        Run the app's Docker image locally. "
-	@echo "                       This command exists for conveniently testing "
-	@echo "                       the Docker image locally. "
+	@echo "make help        Show this help message"
+	@echo "make init        Initialize repository. This command install git hooks locally."
+	@echo "make dev         Run the app's development environment"
+	@echo "make docker      Make the app's Docker image"
+	@echo "make run-docker  Run the app's Docker image locally."
+	@echo "                 This command exists for conveniently testing the Docker image locally."
 
 .PHONY: init
 init: githooks
