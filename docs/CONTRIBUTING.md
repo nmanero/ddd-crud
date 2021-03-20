@@ -22,7 +22,11 @@ Please, check your commit messages comply with [conventional commits specificati
 Include the relevant issue number if applicable.
 
 You can install commit-msg git hook running `init` command:
-
 ```shell
 make init
+```
+
+You can run development environment runnig `dev` command:
+```shell
+make dev
 ```
