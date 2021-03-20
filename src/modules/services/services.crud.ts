@@ -9,11 +9,11 @@ export class Service {
         this.repository = repository;
     }
 
-    get() {
-        return this.repository.findAll();
+    getAll() {
+        return this.repository.getAll();
     }
 
-    create(d: Domain) {
-        this.repository.save(d);
+    add(d: Domain) {
+        this.repository.add(d);
     }
 }

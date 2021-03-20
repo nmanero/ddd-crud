@@ -7,7 +7,7 @@ export const createCommand = async (request, reply) => {
     console.log(request.params.entity, request.query);
     const domainObjectsFactory = new CustomDomainFactory(request.params.entity, request.query);
     const entity : Domain = domainObjectsFactory.instantiate();
-    new Service(new LocalArrayRepository()).create(entity);
+    new Service(new LocalArrayRepository()).add(entity);
 
     return {
         success: true,

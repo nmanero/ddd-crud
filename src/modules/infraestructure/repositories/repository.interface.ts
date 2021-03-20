@@ -1,7 +1,7 @@
 import {Domain} from "../../domains/domain";
 
 export interface Repository {
-    findAll(): Promise<Domain[]>;
+    getAll(): Promise<Domain[]>;
 
-    save(item: Domain): Promise<Domain>;
+    add(item: Domain): Promise<Domain>;
 }
