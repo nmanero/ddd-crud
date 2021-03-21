@@ -1,3 +1,6 @@
+import {Service} from "../services/services.crud";
+import {LocalArrayRepository} from "../infraestructure/repositories/custom/local.array.repository";
+
 export const readCommand = async (request, reply) => {
-    return { hello: 'world' }
+    return new Service(new LocalArrayRepository()).getAll();
 };
