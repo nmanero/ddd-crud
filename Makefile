@@ -5,6 +5,7 @@ help:
 	@echo "make dev         Run the app's development environment"
 	@echo "make docker      Make the app's Docker image"
 	@echo "make run-docker  Run the app's Docker image locally."
+	@echo "make test  		Run tests"
 	@echo "                 This command exists for conveniently testing the Docker image locally."
 
 .PHONY: init
@@ -35,3 +36,7 @@ run-docker:
 		cuatroochenta.com/ddd-crud:$(DOCKER_TAG)
 
 DOCKER_TAG = latest
+
+.PHONE: test
+test:
+	@npm test
