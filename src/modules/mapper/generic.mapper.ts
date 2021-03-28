@@ -9,12 +9,9 @@ export class GenericMapper {
         const domainProperties = this.getClassPropertyIdentifiers(domainModel);
 
         domainProperties.forEach(property => {
-            if (domainModel[property]) {
-                objectDTO[property] = domainModel[property];
-            } else {
-                throw new Error(`GenericMapper: domain should implement getter to ${property}`);
-            }
-        })
+            this.ensureDomainHasGetterForProperty(domainModel, property);
+            objectDTO[property] = domainModel[property];
+        });
 
         return objectDTO;
     }
@@ -23,6 +20,11 @@ export class GenericMapper {
         return Object
                 .getOwnPropertyNames(domainModel)
                 .map(property => (property.replace('_', '')) );
+    }
+
+    private static ensureDomainHasGetterForProperty(domainModel: Domain, property: string): void {
+        if (domainModel[property] === undefined)
+            throw new Error(`GenericMapper: domain should implement getter to ${property}`);
     }
 }
 
