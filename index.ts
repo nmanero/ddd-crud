@@ -17,17 +17,11 @@ diContainer.register({
     lifetime: Lifetime.SINGLETON,
     dispose: (module) => module.dispose(),
   }),
-})
-
-fastify.addHook('onRequest', (request, reply, done) => {
-  request.diScope.register({
-    crudService: asFunction(
-        ({ crudRepository }) => { return new Service(crudRepository) }, {
-          lifetime: Lifetime.SCOPED,
-          dispose: (module) => module.dispose(),
-        }),
+  crudService: asFunction (
+  ({ crudRepository }) => { return new Service(crudRepository) }, {
+    lifetime: Lifetime.SCOPED,
+    dispose: (module) => module.dispose(),
   })
-  done()
 })
 
 GetRoutes.forEach((route, index) => {
