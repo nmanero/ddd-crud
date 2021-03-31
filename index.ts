@@ -3,8 +3,7 @@ import { routes as PostRoutes } from './src/modules/controllers/post.crud'
 import {LocalArrayRepository} from "./src/modules/infraestructure/repositories/custom/local.array.repository";
 import {Service} from "./src/modules/services/services.crud";
 const { fastifyAwilixPlugin } = require('fastify-awilix')
-const { diContainer } = require('fastify-awilix')
-const { asClass, asFunction, Lifetime } = require('awilix')
+const { asFunction, Lifetime } = require('awilix')
 
 // Require the framework and instantiate it
 const fastify = require('fastify')({
