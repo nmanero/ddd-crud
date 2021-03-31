@@ -12,16 +12,15 @@ const fastify = require('fastify')({
 })
 fastify.register(fastifyAwilixPlugin, { disposeOnClose: true, disposeOnResponse: true })
 
-diContainer.register({
-  crudRepository: asClass(LocalArrayRepository, {
-    lifetime: Lifetime.SINGLETON,
-    dispose: (module) => module.dispose(),
-  }),
-  crudService: asFunction (
-  ({ crudRepository }) => { return new Service(crudRepository) }, {
-    lifetime: Lifetime.SCOPED,
-    dispose: (module) => module.dispose(),
+fastify.addHook('onRequest', (request, reply, done) => {
+  request.diScope.register({
+    crudService: asFunction(
+        ({ }) => { return new Service(new LocalArrayRepository(request.params.entity)) }, {
+          lifetime: Lifetime.SCOPED,
+          dispose: (module) => module.dispose(),
+        }),
   })
+  done()
 })
 
 GetRoutes.forEach((route, index) => {
