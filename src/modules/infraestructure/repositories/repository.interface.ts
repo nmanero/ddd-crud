@@ -4,4 +4,6 @@ export interface Repository {
     getAll(): Promise<Domain[]>;
 
     add(item: Domain): Promise<Domain>;
+
+    delete(item: Domain): Promise<boolean>;
 }
