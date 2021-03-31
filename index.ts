@@ -16,8 +16,7 @@ fastify.addHook('onRequest', (request, reply, done) => {
   request.diScope.register({
     crudService: asFunction(
         ({ }) => { return new Service(new LocalArrayRepository(request.params.entity)) }, {
-          lifetime: Lifetime.SCOPED,
-          dispose: (module) => module.dispose(),
+          lifetime: Lifetime.SCOPED
         }),
   })
   done()
