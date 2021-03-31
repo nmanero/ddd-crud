@@ -1,13 +1,13 @@
 import {CustomDomainFactory} from "../domains/custom/custom.domain.factory";
 import {Domain} from "../domains/domain";
 import {Service} from "../services/services.crud";
-import {LocalArrayRepository} from "../infraestructure/repositories/custom/local.array.repository";
 
 export const createCommand = async (request, reply) => {
     console.log(request.params.entity, request.query);
     const domainObjectsFactory = new CustomDomainFactory(request.params.entity, request.query);
     const entity : Domain = domainObjectsFactory.instantiate();
-    new Service(new LocalArrayRepository(request.params.entity)).add(entity);
+    const crudService = request.diScope.resolve('crudService') as Service
+    crudService.add(entity);
 
     return {
         success: true,
