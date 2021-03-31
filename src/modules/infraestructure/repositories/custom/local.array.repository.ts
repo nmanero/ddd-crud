@@ -3,7 +3,7 @@ import {Domain} from "../../../domains/domain";
 import {Hashmap} from "../../../DTO/hashmap";
 
 export class LocalArrayRepository implements Repository {
-    private items: Hashmap[] = [{ hello: 'world' }];
+    private items: Hashmap[] = [];
 
     async getAll(): Promise<Domain[]> {
         //TODO: map with mapper from Hashmap to Domain
