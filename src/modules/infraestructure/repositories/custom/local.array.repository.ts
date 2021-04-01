@@ -1,6 +1,7 @@
 import {Repository} from "../repository.interface";
 import {Domain} from "../../../domains/domain";
 import {Hashmap} from "../../../DTO/hashmap";
+import {CustomDomainFactory} from "../../../domains/custom/custom.domain.factory";
 
 export class LocalArrayRepository implements Repository {
     private entityName: string;
@@ -17,6 +18,16 @@ export class LocalArrayRepository implements Repository {
     async add(item: Domain): Promise<Domain> {
         LocalArrayData.getInstance().getCollection(this.entityName).push(item.toDTO());
         return item;
+    }
+
+    async delete(item: Domain): Promise<boolean> {
+        let entityName = this.entityName;
+        LocalArrayData.getInstance().setCollection(entityName, LocalArrayData.getInstance().getCollection(entityName).filter(function(value, index, arr){
+            //TODO: map with mapper from Hashmap to Domain
+            const domainObjectsFactory = new CustomDomainFactory(entityName, value);
+            return domainObjectsFactory.instantiate().whoAmI() != item.whoAmI();
+        }));
+        return true;
     }
 }
 
@@ -35,9 +46,13 @@ class LocalArrayData {
         return LocalArrayData.instance;
     }
 
+    setCollection(name: string, items: Hashmap[]) {
+        this.items[name] = items;
+    }
+
     getCollection(name: string): Hashmap[] {
         if (!this.items[name]) {
-            this.items[name] = []
+            this.setCollection(name, [])
         }
         return this.items[name];
     }

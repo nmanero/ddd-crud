@@ -1,5 +1,6 @@
 import { routes as GetRoutes } from './src/modules/controllers/get.crud'
 import { routes as PostRoutes } from './src/modules/controllers/post.crud'
+import { routes as DeleteRoutes } from './src/modules/controllers/delete.crud'
 import {LocalArrayRepository} from "./src/modules/infraestructure/repositories/custom/local.array.repository";
 import {Service} from "./src/modules/services/services.crud";
 const { fastifyAwilixPlugin } = require('fastify-awilix')
@@ -27,6 +28,10 @@ GetRoutes.forEach((route, index) => {
 
 PostRoutes.forEach((route, index) => {
   fastify.route(route)
+})
+
+DeleteRoutes.forEach((route, index) => {
+    fastify.route(route)
 })
 
 // Run the server!

@@ -15,4 +15,8 @@ export class Service {
     add(d: Domain) {
         this.repository.add(d);
     }
+
+    delete(d: Domain) {
+        this.repository.delete(d)
+    }
 }
