@@ -3,8 +3,7 @@ import { routes as PostRoutes } from './src/modules/controllers/post.crud'
 import {LocalArrayRepository} from "./src/modules/infraestructure/repositories/custom/local.array.repository";
 import {Service} from "./src/modules/services/services.crud";
 const { fastifyAwilixPlugin } = require('fastify-awilix')
-const { diContainer } = require('fastify-awilix')
-const { asClass, asFunction, Lifetime } = require('awilix')
+const { asFunction, Lifetime } = require('awilix')
 
 // Require the framework and instantiate it
 const fastify = require('fastify')({
@@ -12,16 +11,14 @@ const fastify = require('fastify')({
 })
 fastify.register(fastifyAwilixPlugin, { disposeOnClose: true, disposeOnResponse: true })
 
-diContainer.register({
-  crudRepository: asClass(LocalArrayRepository, {
-    lifetime: Lifetime.SINGLETON,
-    dispose: (module) => module.dispose(),
-  }),
-  crudService: asFunction (
-  ({ crudRepository }) => { return new Service(crudRepository) }, {
-    lifetime: Lifetime.SCOPED,
-    dispose: (module) => module.dispose(),
+fastify.addHook('onRequest', (request, reply, done) => {
+  request.diScope.register({
+    crudService: asFunction(
+        ({ }) => { return new Service(new LocalArrayRepository(request.params.entity)) }, {
+          lifetime: Lifetime.SCOPED
+        }),
   })
+  done()
 })
 
 GetRoutes.forEach((route, index) => {

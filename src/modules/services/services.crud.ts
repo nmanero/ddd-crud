@@ -1,9 +1,8 @@
-import {Hashmap} from "../DTO/hashmap";
 import {Repository} from "../infraestructure/repositories/repository.interface";
 import {Domain} from "../domains/domain";
 
 export class Service {
-    private repository: Repository;
+    private readonly repository: Repository;
 
     constructor(repository: Repository) {
         this.repository = repository;

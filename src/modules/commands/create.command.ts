@@ -4,9 +4,9 @@ import {Service} from "../services/services.crud";
 
 export const createCommand = async (request, reply) => {
     console.log(request.params.entity, request.query);
-    const crudService = request.diScope.resolve('crudService') as Service
     const domainObjectsFactory = new CustomDomainFactory(request.params.entity, request.query);
     const entity : Domain = domainObjectsFactory.instantiate();
+    const crudService = request.diScope.resolve('crudService') as Service
     crudService.add(entity);
 
     return {
