@@ -10,14 +10,28 @@ export class LocalArrayRepository implements Repository {
         this.entityName = entityName;
     }
 
+    async get(item: Domain) {
+        let entityName = this.entityName;
+        return LocalArrayData.getInstance().getCollection(entityName).find(function (value, index, arr) {
+            //TODO: map with mapper from Hashmap to Domain
+            const domainObjectsFactory = new CustomDomainFactory(entityName, value);
+            return domainObjectsFactory.instantiate().whoAmI() == item.whoAmI();
+        });
+    }
+
     async getAll(): Promise<Domain[]> {
         //TODO: map with mapper from Hashmap to Domain
         return LocalArrayData.getInstance().getCollection(this.entityName).map(i => i as Domain);
     }
 
     async add(item: Domain): Promise<Domain> {
-        LocalArrayData.getInstance().getCollection(this.entityName).push(item.toDTO());
-        return item;
+        if (await this.get(item)) {
+            throw new Error("Unique Error: an item with same identity exists.")
+        }
+        else {
+            LocalArrayData.getInstance().getCollection(this.entityName).push(item.toDTO());
+            return item;
+        }
     }
 
     async delete(item: Domain): Promise<boolean> {
