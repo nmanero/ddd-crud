@@ -29,6 +29,6 @@ export class User implements Domain {
     }
 
     public whoAmI(): String {
-        return this.name + " " + this.surname;
+        return encodeURI(this.name + " " + this.surname);
     }
 }
