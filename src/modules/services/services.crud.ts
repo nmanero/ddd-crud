@@ -16,7 +16,7 @@ export class Service {
         this.repository.add(d);
     }
 
-    delete(d: Domain) {
-        this.repository.delete(d)
+    delete(id: string) {
+        this.repository.delete(id)
     }
 }
