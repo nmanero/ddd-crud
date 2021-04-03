@@ -7,6 +7,12 @@ export class UserFactory {
     create(body: Hashmap) {
         const name: Name = new Name(body.name);
         const surname: Surname = new Surname(body.surname);
-        return new User(name, surname);
+
+        if (body.id) {
+           return new User(name, surname, body.id);
+        }
+        else {
+            return new User(name, surname)
+        }
     }
 }
