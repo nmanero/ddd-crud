@@ -43,6 +43,16 @@ export class LocalArrayRepository implements Repository {
         }));
         return true;
     }
+
+    async update(item: Domain): Promise<Domain> {
+        let deleted: boolean = await this.delete(item);
+        if (deleted) {
+            return this.add(item);
+        }
+        else {
+            return {} as Domain;
+        }
+    }
 }
 
 class LocalArrayData {
