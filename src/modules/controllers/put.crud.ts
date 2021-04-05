@@ -1,7 +1,7 @@
-import { updateCommand } from '../commands/update.command'
+import { replaceCommand } from '../commands/replace.command'
 // Declare a route
 export const routes = [{
     method: 'PUT',
     url: '/:entity/:id',
-    handler: updateCommand
+    handler: replaceCommand
 }];
