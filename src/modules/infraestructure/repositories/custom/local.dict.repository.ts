@@ -10,8 +10,8 @@ export class LocalDictRepository implements Repository {
         this.entityName = entityName;
     }
 
-    async getById(id: UUID) {
-        return LocalDictData.getInstance().getCollection(this.entityName)[id.value];
+    async getById(id: UUID): Promise<Domain> {
+        return LocalDictData.getInstance().getCollection(this.entityName)[id.value] as Domain;
     }
 
     async getAll(): Promise<Domain[]> {
