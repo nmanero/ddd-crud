@@ -2,6 +2,7 @@ import {Repository} from "../repository.interface";
 import {Domain} from "../../../domains/domain";
 import {Hashmap} from "../../../DTO/hashmap";
 import {UUID} from "../../../DTO/value-object/uuid";
+import {CustomDomainFactory} from "../../../domains/custom/custom.domain.factory";
 
 export class LocalDictRepository implements Repository {
     private readonly entityName: string;
@@ -11,11 +12,15 @@ export class LocalDictRepository implements Repository {
     }
 
     async getById(id: UUID): Promise<Domain> {
-        return LocalDictData.getInstance().getCollection(this.entityName)[id.value] as Domain;
+        const domainObjectsFactory = new CustomDomainFactory(this.entityName, LocalDictData.getInstance().getCollection(this.entityName)[id.value]);
+        return domainObjectsFactory.instantiate();
     }
 
     async getAll(): Promise<Domain[]> {
-        return Object.values(LocalDictData.getInstance().getCollection(this.entityName)).map(i => i as Domain);
+        return Object.values(LocalDictData.getInstance().getCollection(this.entityName)).map(i => {
+            const domainObjectsFactory = new CustomDomainFactory(this.entityName, i);
+            return domainObjectsFactory.instantiate();
+        });
     }
 
     async add(item: Domain): Promise<Domain> {
