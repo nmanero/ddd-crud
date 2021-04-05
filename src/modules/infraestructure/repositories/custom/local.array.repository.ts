@@ -34,12 +34,12 @@ export class LocalArrayRepository implements Repository {
         }
     }
 
-    async delete(id: string): Promise<boolean> {
+    async delete(item: Domain): Promise<boolean> {
         let entityName = this.entityName;
         LocalArrayData.getInstance().setCollection(entityName, LocalArrayData.getInstance().getCollection(entityName).filter(function(value, index, arr){
             //TODO: map with mapper from Hashmap to Domain
             const domainObjectsFactory = new CustomDomainFactory(entityName, value);
-            return domainObjectsFactory.instantiate().whoAmI() != id;
+            return domainObjectsFactory.instantiate().whoAmI() != item.whoAmI();
         }));
         return true;
     }

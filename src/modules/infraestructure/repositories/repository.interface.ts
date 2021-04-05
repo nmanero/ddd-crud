@@ -5,5 +5,5 @@ export interface Repository {
 
     add(item: Domain): Promise<Domain>;
 
-    delete(id: string): Promise<boolean>;
+    delete(item: Domain): Promise<boolean>;
 }
