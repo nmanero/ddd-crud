@@ -19,20 +19,20 @@ export class LocalDictRepository implements Repository {
     }
 
     async add(item: Domain): Promise<Domain> {
-        let id: UUID = new UUID(String(item.whoAmI()));
-        if (await this.getById(id)) {
+        let collection = LocalDictData.getInstance().getCollection(this.entityName);
+        if (collection[String(item.whoAmI())] !== undefined) {
             throw new Error("Unique Error: an item with same identity exists.")
         }
         else {
-            LocalDictData.getInstance().getCollection(this.entityName)[id.value] = item.toDTO();
+            collection[String(item.whoAmI())] = item.toDTO();
             return item;
         }
     }
 
     async delete(item: Domain): Promise<boolean> {
-        let id: UUID = new UUID(String(item.whoAmI()));
-        if (await this.getById(id)) {
-            delete LocalDictData.getInstance().getCollection(this.entityName)[id.value];
+        let collection = LocalDictData.getInstance().getCollection(this.entityName);
+        if (collection[String(item.whoAmI())] !== undefined) {
+            delete collection[String(item.whoAmI())];
         }
         else {
             return false;
@@ -40,9 +40,9 @@ export class LocalDictRepository implements Repository {
     }
 
     async update(item: Domain): Promise<Domain> {
-        let id: UUID = new UUID(String(item.whoAmI()));
-        if (await this.getById(id)) {
-            LocalDictData.getInstance().getCollection(this.entityName)[id.value] = item.toDTO();
+        let collection = LocalDictData.getInstance().getCollection(this.entityName);
+        if (collection[String(item.whoAmI())] !== undefined) {
+            collection[String(item.whoAmI())] = item.toDTO();
         }
         else {
             return {} as Domain;
