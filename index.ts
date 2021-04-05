@@ -2,6 +2,7 @@ import { routes as GetRoutes } from './src/modules/controllers/get.crud'
 import { routes as PostRoutes } from './src/modules/controllers/post.crud'
 import { routes as DeleteRoutes } from './src/modules/controllers/delete.crud'
 import { routes as PutRoutes } from './src/modules/controllers/put.crud'
+import { routes as PatchRoutes } from './src/modules/controllers/patch.crud'
 import {LocalDictRepository} from "./src/modules/infraestructure/repositories/custom/local.dict.repository";
 import {Service} from "./src/modules/services/services.crud";
 const { fastifyAwilixPlugin } = require('fastify-awilix')
@@ -36,6 +37,10 @@ DeleteRoutes.forEach((route, index) => {
 })
 
 PutRoutes.forEach((route, index) => {
+    fastify.route(route)
+})
+
+PatchRoutes.forEach((route, index) => {
     fastify.route(route)
 })
 
