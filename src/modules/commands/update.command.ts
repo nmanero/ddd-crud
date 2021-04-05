@@ -3,8 +3,8 @@ import {Domain} from "../domains/domain";
 import {Service} from "../services/services.crud";
 
 export const updateCommand = async (request, reply) => {
-    request.query.id = request.params.id;
-    const domainObjectsFactory = new CustomDomainFactory(request.params.entity, request.query);
+    request.body.id = request.params.id;
+    const domainObjectsFactory = new CustomDomainFactory(request.params.entity, request.body);
     const entity : Domain = domainObjectsFactory.instantiate();
     const crudService = request.diScope.resolve('crudService') as Service
     crudService.update(entity);

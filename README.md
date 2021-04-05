@@ -16,8 +16,8 @@ And to test the resources:
 
 ```shell
 curl -X GET    "http://localhost:3000/users"
-curl -X POST   "http://localhost:3000/users?surname=Palotes&name=Perico"
-curl -X PUT    "http://localhost:3000/users/{uuid}?surname=Cantaora&name=Rita"
+curl -X POST   "http://localhost:3000/users"        -H "Content-Type: application/json" -d '{"name": "Perico", "surname": "Palotes"}'
+curl -X PUT    "http://localhost:3000/users/{uuid}" -H "Content-Type: application/json" -d '{"name": "Cantaora", "surname": "Rita"}'
 curl -X DELETE "http://localhost:3000/users/{uuid}"
 ```
 ## Contributing
