@@ -2,6 +2,7 @@ import {User} from "./user.domain";
 import {Name} from "../../../DTO/value-object/name";
 import {Surname} from "../../../DTO/value-object/surname";
 import {Hashmap} from "../../../DTO/hashmap";
+import {UUID} from "../../../DTO/value-object/uuid";
 
 export class UserFactory {
     create(body: Hashmap) {
@@ -9,7 +10,7 @@ export class UserFactory {
         const surname: Surname = new Surname(body.surname);
 
         if (body.id) {
-           return new User(name, surname, body.id);
+           return new User(name, surname, new UUID(body.id));
         }
         else {
             return new User(name, surname)
