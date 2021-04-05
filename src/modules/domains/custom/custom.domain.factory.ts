@@ -1,4 +1,5 @@
 import {UserFactory} from "./user/user.factory";
+import {Domain} from "../domain";
 
 export class CustomDomainFactory {
     private name: string;
@@ -19,5 +20,10 @@ export class CustomDomainFactory {
             return factory.create(this.body);
         } else
             throw "Value Object not found " + this.name;
+    }
+
+    update(item: Domain) {
+        const factory = this.valueObjects[this.name];
+        return factory.update(item, this.body);
     }
 }
