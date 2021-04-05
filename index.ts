@@ -2,7 +2,7 @@ import { routes as GetRoutes } from './src/modules/controllers/get.crud'
 import { routes as PostRoutes } from './src/modules/controllers/post.crud'
 import { routes as DeleteRoutes } from './src/modules/controllers/delete.crud'
 import { routes as PutRoutes } from './src/modules/controllers/put.crud'
-import {LocalArrayRepository} from "./src/modules/infraestructure/repositories/custom/local.array.repository";
+import {LocalDictRepository} from "./src/modules/infraestructure/repositories/custom/local.dict.repository";
 import {Service} from "./src/modules/services/services.crud";
 const { fastifyAwilixPlugin } = require('fastify-awilix')
 const { asFunction, Lifetime } = require('awilix')
@@ -16,7 +16,7 @@ fastify.register(fastifyAwilixPlugin, { disposeOnClose: true, disposeOnResponse:
 fastify.addHook('onRequest', (request, reply, done) => {
   request.diScope.register({
     crudService: asFunction(
-        ({ }) => { return new Service(new LocalArrayRepository(request.params.entity)) }, {
+        ({ }) => { return new Service(new LocalDictRepository(request.params.entity)) }, {
           lifetime: Lifetime.SCOPED
         }),
   })
