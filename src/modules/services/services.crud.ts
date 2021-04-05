@@ -1,11 +1,16 @@
 import {Repository} from "../infraestructure/repositories/repository.interface";
 import {Domain} from "../domains/domain";
+import {UUID} from "../DTO/value-object/uuid";
 
 export class Service {
     private readonly repository: Repository;
 
     constructor(repository: Repository) {
         this.repository = repository;
+    }
+
+    getById(id: UUID) {
+        return this.repository.getById(id);
     }
 
     getAll() {
