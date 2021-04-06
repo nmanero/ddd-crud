@@ -16,4 +16,11 @@ export class UserFactory {
             return new User(name, surname)
         }
     }
+
+    update(user: User, body: Hashmap) {
+        const name: Name = body.name ? new Name(body.name) : new Name(user.name);
+        const surname: Surname = body.surname ? new Surname(body.surname) : new Surname(user.surname);
+
+        return new User(name, surname, new UUID(String(user.whoAmI())));
+    }
 }
